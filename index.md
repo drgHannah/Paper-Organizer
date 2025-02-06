@@ -1,0 +1,72 @@
+---
+layout: default
+title: Paper Collection Manager
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paper Collection Manager</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Paper Collection Manager</h1>
+    <div class="button-group">
+      <button id="addPaperBtn">Add New Paper</button>
+      <button id="downloadJsonBtn">Download JSON</button>
+      <button id="uploadJsonBtn">Upload JSON</button>
+    </div>
+    <input type="file" id="uploadJsonInput" accept="application/json" style="display: none;">
+    <table id="papersTable">
+      <thead>
+        <tr>
+          <th>Title<div class="resizer"></div></th>
+          <th>Abstract<div class="resizer"></div></th>
+          <th>Notes<div class="resizer"></div></th>
+          <th>Paper Link<div class="resizer"></div></th>
+          <th>Code Link<div class="resizer"></div></th>
+          <th>Actions<div class="resizer"></div></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div id="paperModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-header">Add/Edit Paper</div>
+      <form id="paperForm">
+        <input type="hidden" id="paperIndex" value="-1">
+        <div class="form-group">
+          <label for="paperTitle">Title:</label>
+          <input type="text" id="paperTitle" required>
+        </div>
+        <div class="form-group">
+          <label for="paperAbstract">Abstract:</label>
+          <textarea id="paperAbstract" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="paperNotes">Notes:</label>
+          <textarea id="paperNotes" rows="2"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="paperLink">Paper Link:</label>
+          <input type="url" id="paperLink" placeholder="https://example.com">
+        </div>
+        <div class="form-group">
+          <label for="codeLink">Code Link:</label>
+          <input type="url" id="codeLink" placeholder="https://github.com">
+        </div>
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
