@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to render the table
     function renderTable() {
-        // Sort the papers array by title using localeCompare for a proper alphabetical sort.
+        // Sort the papers array by title.
         papers.sort((a, b) => a.title.localeCompare(b.title));
       
         papersTableBody.innerHTML = ""; // Clear table first
@@ -27,7 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
             : `<span class="no-link">No link</span>`;
       
           const row = document.createElement("tr");
+      
           row.innerHTML = `
+            <td>${index + 1}</td>
             <td>${paper.title}</td>
             <td><div class="abstract-column">${paper.abstract.replace(/\n/g, "<br>")}</div></td>
             <td><div class="notes-column">${paper.notes.replace(/\n/g, "<br>")}</div></td>
@@ -38,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <button class="delete-btn" onclick="deletePaper(${index})">Delete</button>
             </td>
           `;
+      
           papersTableBody.appendChild(row);
         });
       }
