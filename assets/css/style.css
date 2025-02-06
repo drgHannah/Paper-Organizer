@@ -1,127 +1,186 @@
 /* General Styles */
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f7f9;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Main Container */
-  .container {
-    width: 85%;
-    max-width: 1000px;
-    margin: 40px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-  
-  /* Headings */
-  h1 {
-    text-align: center;
-    color: #333;
-  }
-  
-  /* Buttons */
-  .button-group {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  button {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 15px;
-    margin: 5px;
-    border-radius: 4px;
-    cursor: pointer;
-    border: none;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Table */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  /* Modal */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 100;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal-content {
-    background: #fff;
-    padding: 25px;
-    border-radius: 8px;
-    width: 90%; /* Make it more responsive */
-    max-width: 600px; /* Limit its width */
-    position: relative;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f7f9;
+  margin: 0;
+  padding: 0;
+}
 
-    .modal-header {
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
+/* Main Container */
+/* .container {
+  width: 85%;
+  max-width: 1000px;
+  margin: 40px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+} */
 
-    .form-group {
-        margin-bottom: 15px;
-    }
+/* Headings */
+h1 {
+  text-align: center;
+  color: #333;
+}
 
-    .form-group label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
+/* Buttons */
+.button-group {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    .form-group input,
-    .form-group textarea {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 16px;
-    }
+button {
+  background-color: #007BFF;
+  color: white;
+  padding: 8px 12px;
+  margin: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+}
 
-    button[type="submit"] {
-        width: 100%;
-        background-color: #28a745;
-        padding: 12px;
-        font-size: 16px;
-    }
+button:hover {
+  background-color: #0056b3;
+}
 
-  
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 28px;
-    cursor: pointer;
-  }
-  
+.delete-btn {
+  background-color: #dc3545;
+}
+
+.delete-btn:hover {
+  background-color: #a71d2a;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+  vertical-align: top; /* Align text at the top */
+  max-height: 100px; /* Set max height */
+}
+
+/* Limit max height for table rows and make it scrollable */
+td {
+  /* You can remove max-height and overflow here if they interfere with scrolling */
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+  vertical-align: top;
+}
+
+/* Scrollable notes container */
+.notes-column {
+  height: 120px; /* Fixed height for scrolling */
+  overflow-y: auto;
+  white-space: pre-wrap; /* Preserve newlines */
+  word-wrap: break-word;
+}
+
+/* Ensure links look nice */
+td a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+td a:hover {
+  text-decoration: underline;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 90%;              /* Increased width */
+  max-width: 1600px;       /* Increased maximum width */
+  margin: 40px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Modal */
+.modal-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;        /* Increased modal width */
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  background-color: #28a745;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  cursor: pointer;
+}
+.abstract-column {
+  height: 120px; /* Set a fixed height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  white-space: pre-wrap; /* Preserve line breaks */
+  word-wrap: break-word;
+}
+
+#papersTable th:first-child,
+#papersTable td:first-child {
+  width: 300px; /* Adjust this value as needed */
+}
+
+.edit-btn,
+.delete-btn {
+  width: 80px; /* Adjust the width value as needed */
+}
