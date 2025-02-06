@@ -50,8 +50,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const notes = document.getElementById("paperNotes").value;
         const link = document.getElementById("paperLink").value;
         const codeLink = document.getElementById("codeLink").value;
+        const bibtex   = document.getElementById("bibtexField").value; // New BibTeX value
 
-        papers.push({ title, abstract, notes, link, codeLink });
+
+        papers.push({ title, abstract, notes, link, codeLink, bibtex });
         isDirty = true; // Mark data as changed
         renderTable(); // Update table
         modal.style.display = "none";
@@ -99,6 +101,8 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("paperNotes").value = papers[index].notes;
         document.getElementById("paperLink").value = papers[index].link;
         document.getElementById("codeLink").value = papers[index].codeLink;
+        document.getElementById("bibtexField").value   = papers[index].bibtex || ""; // Set BibTeX value
+
 
         modal.style.display = "flex";
         papers.splice(index, 1); // Remove the old entry so we can replace it
