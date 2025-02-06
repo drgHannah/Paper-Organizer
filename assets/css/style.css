@@ -198,3 +198,25 @@ button[type="submit"] {
   color: gray;
   font-style: italic;
 }
+/* Zebra-striping for table rows */
+#papersTable tbody tr:nth-child(odd) {
+  background-color: #ffffff;  /* White for odd rows */
+}
+
+#papersTable tbody tr:nth-child(even) {
+  background-color: #f2f2f2;  /* Light gray for even rows */
+}
+
+/* Always gray background for the header row */
+#papersTable thead tr {
+  background-color: #f2f2f2;
+}
+
+/* Zebra striping for the table body rows */
+#papersTable tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+#papersTable tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
