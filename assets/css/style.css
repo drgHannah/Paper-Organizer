@@ -76,11 +76,46 @@ body {
   
   .modal-content {
     background: #fff;
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
-    width: 400px;
+    width: 90%; /* Make it more responsive */
+    max-width: 600px; /* Limit its width */
     position: relative;
-  }
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .modal-header {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        background-color: #28a745;
+        padding: 12px;
+        font-size: 16px;
+    }
+
   
   .close {
     position: absolute;

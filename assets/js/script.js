@@ -1,55 +1,54 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let papers = JSON.parse(localStorage.getItem("papers")) || [];
-    const tableBody = document.querySelector("#papersTable tbody");
-    const paperModal = document.getElementById("paperModal");
+    const modal = document.getElementById("paperModal");
     const addPaperBtn = document.getElementById("addPaperBtn");
-    const closeModalSpan = document.querySelector(".close");
+    const closeModal = document.querySelector(".close");
     const paperForm = document.getElementById("paperForm");
-  
-    function savePapers() {
-      localStorage.setItem("papers", JSON.stringify(papers));
-    }
-  
-    function renderTable() {
-      tableBody.innerHTML = "";
-      papers.forEach((paper, index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${paper.title}</td>
-          <td>${paper.abstract}</td>
-          <td>${paper.notes.replace(/\n/g, "<br>")}</td>
-          <td><a href="${paper.paperLink}" target="_blank">View</a></td>
-          <td><a href="${paper.codeLink}" target="_blank">Code</a></td>
-          <td><button class="edit-btn" data-index="${index}">Edit</button> <button class="delete-btn" data-index="${index}">Delete</button></td>
-        `;
-        tableBody.appendChild(row);
-      });
-    }
-  
-    addPaperBtn.addEventListener("click", () => {
-      paperForm.reset();
-      paperModal.style.display = "flex";
+
+    // Open modal
+    addPaperBtn.addEventListener("click", function () {
+        modal.style.display = "flex";  // Use flex to center it
+        paperForm.reset(); // Clear form on open
     });
-  
-    closeModalSpan.addEventListener("click", () => {
-      paperModal.style.display = "none";
+
+    // Close modal
+    closeModal.addEventListener("click", function () {
+        modal.style.display = "none";
     });
-  
+
+    // Save paper
     paperForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const newPaper = {
-        title: document.getElementById("paperTitle").value,
-        abstract: document.getElementById("paperAbstract").value,
-        notes: document.getElementById("paperNotes").value,
-        paperLink: document.getElementById("paperLink").value,
-        codeLink: document.getElementById("codeLink").value
-      };
-      papers.push(newPaper);
-      savePapers();
-      renderTable();
-      paperModal.style.display = "none";
+        e.preventDefault();
+        alert("Paper saved! (This needs local storage or a backend to persist)");
+        modal.style.display = "none";
     });
-  
-    renderTable();
-  });
-  
+
+    // Download JSON
+    document.getElementById("downloadJsonBtn").addEventListener("click", function () {
+        const sampleData = [
+            { title: "Sample Paper", abstract: "This is a test abstract.", notes: "Some notes", link: "https://example.com" }
+        ];
+        const blob = new Blob([JSON.stringify(sampleData, null, 2)], { type: "application/json" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "papers.json";
+        a.click();
+    });
+
+    // Upload JSON
+    document.getElementById("uploadJsonBtn").addEventListener("click", function () {
+        document.getElementById("uploadJsonInput").click();
+    });
+
+    document.getElementById("uploadJsonInput").addEventListener("change", function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const papers = JSON.parse(e.target.result);
+                console.log("Loaded Papers:", papers);
+                alert("File uploaded successfully! (Display logic needs implementation)");
+            };
+            reader.readAsText(file);
+        }
+    });
+});
