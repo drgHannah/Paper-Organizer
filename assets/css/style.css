@@ -184,3 +184,7 @@ button[type="submit"] {
 .delete-btn {
   width: 80px; /* Adjust the width value as needed */
 }
+.no-link {
+  color: gray;
+  font-style: italic;
+}

@@ -10,26 +10,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to render the table
     function renderTable() {
+        // Sort the papers array by title using localeCompare for a proper alphabetical sort.
+        papers.sort((a, b) => a.title.localeCompare(b.title));
+      
         papersTableBody.innerHTML = ""; // Clear table first
-    
+      
         papers.forEach((paper, index) => {
-            const row = document.createElement("tr");
-    
-            row.innerHTML = `
-                <td>${paper.title}</td>
-                <td><div class="abstract-column">${paper.abstract.replace(/\n/g, "<br>")}</div></td>
-                <td><div class="notes-column">${paper.notes.replace(/\n/g, "<br>")}</div></td>
-                <td><a href="${paper.link}" target="_blank">View</a></td>
-                <td><a href="${paper.codeLink}" target="_blank">View</a></td>
-                <td class="actions">
-                    <button class="edit-btn" onclick="editPaper(${index})">Edit</button>
-                    <button class="delete-btn" onclick="deletePaper(${index})">Delete</button>
-                </td>
-            `;
-    
-            papersTableBody.appendChild(row);
+          // Determine the HTML for the paper link.
+          const paperLinkHtml = paper.link
+            ? `<a href="${paper.link}" target="_blank">View</a>`
+            : `<span class="no-link">No link</span>`;
+      
+          // Determine the HTML for the code link.
+          const codeLinkHtml = paper.codeLink
+            ? `<a href="${paper.codeLink}" target="_blank">View</a>`
+            : `<span class="no-link">No link</span>`;
+      
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${paper.title}</td>
+            <td><div class="abstract-column">${paper.abstract.replace(/\n/g, "<br>")}</div></td>
+            <td><div class="notes-column">${paper.notes.replace(/\n/g, "<br>")}</div></td>
+            <td>${paperLinkHtml}</td>
+            <td>${codeLinkHtml}</td>
+            <td class="actions">
+                <button class="edit-btn" onclick="editPaper(${index})">Edit</button>
+                <button class="delete-btn" onclick="deletePaper(${index})">Delete</button>
+            </td>
+          `;
+          papersTableBody.appendChild(row);
         });
-    }
+      }
+      
 
     // Open modal
     addPaperBtn.addEventListener("click", function () {
