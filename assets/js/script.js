@@ -13,37 +13,94 @@ document.addEventListener("DOMContentLoaded", function () {
         // Sort the papers array by title.
         papers.sort((a, b) => a.title.localeCompare(b.title));
       
-        papersTableBody.innerHTML = ""; // Clear table first
+        // Clear table first
+        papersTableBody.innerHTML = "";
       
         papers.forEach((paper, index) => {
-          // Determine the HTML for the paper link.
-          const paperLinkHtml = paper.link
-            ? `<a href="${paper.link}" target="_blank">View</a>`
-            : `<span class="no-link">No link</span>`;
-      
-          // Determine the HTML for the code link.
-          const codeLinkHtml = paper.codeLink
-            ? `<a href="${paper.codeLink}" target="_blank">View</a>`
-            : `<span class="no-link">No link</span>`;
-      
+          // Create a new row
           const row = document.createElement("tr");
       
-          row.innerHTML = `
-            <td>${index + 1}</td>
-            <td>${paper.title}</td>
-            <td><div class="abstract-column">${paper.abstract.replace(/\n/g, "<br>")}</div></td>
-            <td><div class="notes-column">${paper.notes.replace(/\n/g, "<br>")}</div></td>
-            <td>${paperLinkHtml}</td>
-            <td>${codeLinkHtml}</td>
-            <td class="actions">
-                <button class="edit-btn" onclick="editPaper(${index})">Edit</button>
-                <button class="delete-btn" onclick="deletePaper(${index})">Delete</button>
-            </td>
-          `;
+          // Numbering cell
+          const numCell = document.createElement("td");
+          numCell.textContent = index + 1;
+          row.appendChild(numCell);
       
+          // Title cell
+          const titleCell = document.createElement("td");
+          titleCell.textContent = paper.title;
+          row.appendChild(titleCell);
+      
+          // Abstract cell with scrollable container
+          const abstractCell = document.createElement("td");
+          const abstractDiv = document.createElement("div");
+          abstractDiv.classList.add("abstract-column");
+          abstractDiv.innerHTML = paper.abstract.replace(/\n/g, "<br>");
+          abstractCell.appendChild(abstractDiv);
+          row.appendChild(abstractCell);
+      
+          // Notes cell with scrollable container
+          const notesCell = document.createElement("td");
+          const notesDiv = document.createElement("div");
+          notesDiv.classList.add("notes-column");
+          notesDiv.innerHTML = paper.notes.replace(/\n/g, "<br>");
+          notesCell.appendChild(notesDiv);
+          row.appendChild(notesCell);
+      
+          // Paper link cell: if link exists, create an anchor; otherwise, gray out text.
+          const linkCell = document.createElement("td");
+          if (paper.link) {
+            const linkAnchor = document.createElement("a");
+            linkAnchor.href = paper.link;
+            linkAnchor.target = "_blank";
+            linkAnchor.textContent = "View";
+            linkCell.appendChild(linkAnchor);
+          } else {
+            const noLinkSpan = document.createElement("span");
+            noLinkSpan.classList.add("no-link");
+            noLinkSpan.textContent = "No link";
+            linkCell.appendChild(noLinkSpan);
+          }
+          row.appendChild(linkCell);
+      
+          // Code link cell: similar to the paper link cell.
+          const codeLinkCell = document.createElement("td");
+          if (paper.codeLink) {
+            const codeLinkAnchor = document.createElement("a");
+            codeLinkAnchor.href = paper.codeLink;
+            codeLinkAnchor.target = "_blank";
+            codeLinkAnchor.textContent = "View";
+            codeLinkCell.appendChild(codeLinkAnchor);
+          } else {
+            const noCodeLinkSpan = document.createElement("span");
+            noCodeLinkSpan.classList.add("no-link");
+            noCodeLinkSpan.textContent = "No link";
+            codeLinkCell.appendChild(noCodeLinkSpan);
+          }
+          row.appendChild(codeLinkCell);
+      
+          // Actions cell (Edit & Delete buttons)
+          const actionsCell = document.createElement("td");
+          actionsCell.classList.add("actions");
+      
+          const editBtn = document.createElement("button");
+          editBtn.classList.add("edit-btn");
+          editBtn.textContent = "Edit";
+          editBtn.addEventListener("click", () => { editPaper(index); });
+          actionsCell.appendChild(editBtn);
+      
+          const deleteBtn = document.createElement("button");
+          deleteBtn.classList.add("delete-btn");
+          deleteBtn.textContent = "Delete";
+          deleteBtn.addEventListener("click", () => { deletePaper(index); });
+          actionsCell.appendChild(deleteBtn);
+      
+          row.appendChild(actionsCell);
+      
+          // Append the row to the table body
           papersTableBody.appendChild(row);
         });
       }
+      
       
 
     // Open modal
